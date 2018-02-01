@@ -1,0 +1,30 @@
+index:
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Proj spel</title>
+  </head>
+  <body lang="nl">
+
+<input type="radio" name="antwoord" value="0" class="antwoord gekozen" id="antw0">`
+<label class="electro" for="antw0" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+
+  <input type="radio" name="antwoord" value="1" class="antwoord gekozen" id="antw1">`
+  <label class="electro" for="antw1" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+
+    <input type="radio" name="antwoord" value="2" class="antwoord gekozen" id="antw2">`
+    <label class="electro" for="antw2" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+
+      <input type="radio" name="antwoord" value="3" class="antwoord gekozen" id="ant3">`
+      <label class="electro" for="antw3" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+
+        <input type="radio" name="antwoord" value="4" class="antwoord gekozen" id="antw4">`
+        <label class="electro" for="antw4" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+
+          <input type="radio" name="antwoord" value="5" class="antwoord gekozen" id="antw5">`
+          <label class="electro" for="antw5" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+  </body>
+</html>

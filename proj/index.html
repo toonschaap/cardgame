@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+<style>
+div#memory_board{
+	background:#DCDCDC;
+	border:#999 1px solid;
+	width:800px;
+	height:300px;
+	padding:24px;
+	margin:0px auto;
+}
+div#memory_board > div{
+	background: url("card.jpg") no-repeat;
+	border:#000 1px solid;
+	width:70px;
+	height:90px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+</style>
+<audio controls>
+  <source src="music.mp3" type="audio/mpeg">
+Je browser kan de muziek niet afspelen.
+</audio>
+<h2>Music aan of uit.</h2>
+<script>
+
+var memory_array = ['♥','♥','♦','♦','♣','♣','♠','♠','•','•','♪','♪'];
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+var goed = 0;
+var fout =0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+	tiles_flipped = 0;
+	var output = '';
+    memory_array.memory_tile_shuffle();
+	for(var i = 0; i < memory_array.length; i++){
+		output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+	}
+	document.getElementById('memory_board').innerHTML = output;
+}
+function memoryFlipTile(tile,val){
+	if(tile.innerHTML == "" && memory_values.length < 2){
+		tile.style.background = '#FFF';
+		tile.innerHTML = val;
+		if(memory_values.length == 0){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+		} else if(memory_values.length == 1){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+			if(memory_values[0] == memory_values[1]){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+              goed = goed + 1;
+              document.getElementById('score').innerHTML = "Goed: " + goed;
+
+				if(tiles_flipped == memory_array.length){
+					alert("Goed gedaan! Nieuw bord wordt gemaakt...");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();
+				}
+			} else {
+				function flip2Back(){
+
+				    var tile_1 = document.getElementById(memory_tile_ids[0]);
+				    var tile_2 = document.getElementById(memory_tile_ids[1]);
+				    tile_1.style.background = 'url(card.jpg) no-repeat';
+            	    tile_1.innerHTML = "";
+				    tile_2.style.background = 'url(card.jpg) no-repeat';
+            	    tile_2.innerHTML = "";
+
+				    memory_values = [];
+            	    memory_tile_ids = [];
+				}
+				setTimeout(flip2Back, 700);
+        fout = fout + 1;
+        document.getElementById('fout').innerHTML = "Fout: " + fout;
+			}
+		}
+	}
+}
+</script>
+</head>
+<body background="achtergrond.png">
+  <h4 id="score">Goed:</h4>
+  <h4 id="fout">Fout:</h4>
+<div id="memory_board"></div>
+
+<script>newBoard();</script>
+</body>
+</html>
+</html>
